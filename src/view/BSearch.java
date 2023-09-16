@@ -3,6 +3,7 @@ package view;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -14,6 +15,8 @@ public class BSearch {
     private BLobby bLobby;
     private Label title;
     private VBox mainBox;
+    private HBox backBox;
+
 
     public BSearch(String activeUser, Stage primaryStage){
         initComponents(activeUser, primaryStage);
@@ -33,6 +36,8 @@ public class BSearch {
         });
 
         mainBox = new VBox();
+        backBox = new HBox();
+        backBox.getChildren().addAll(back);
         mainBox.getChildren().addAll(title);
         mainBox.setAlignment(Pos.CENTER);
         scene = new Scene(mainBox);

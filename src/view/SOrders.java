@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -15,6 +16,8 @@ public class SOrders {
     private SLobby sLobby;
     private Label title;
     private VBox mainBox;
+    private HBox backBox;
+
 
     public SOrders(String activeUser, Stage primaryStage){
         initComponents(activeUser, primaryStage);
@@ -34,6 +37,8 @@ public class SOrders {
         });
 
         mainBox = new VBox();
+        backBox = new HBox();
+        backBox.getChildren().addAll(back);
         mainBox.getChildren().addAll(title);
         mainBox.setAlignment(Pos.CENTER);
         scene = new Scene(mainBox);
