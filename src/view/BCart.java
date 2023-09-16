@@ -37,7 +37,7 @@ public class BCart {
 
         mainBox = new VBox();
         backBox = new HBox();
-        backBox.getChildren().addAll(back);
+        backBox.getChildren().addAll(back);//bliu
         mainBox.getChildren().addAll(backBox,title);
         mainBox.setAlignment(Pos.CENTER);
         scene = new Scene(mainBox);
