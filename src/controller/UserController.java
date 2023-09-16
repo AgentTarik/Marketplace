@@ -58,6 +58,19 @@ public class UserController {
         }
     }
 
+    public String checkType(String username){
+        for (int i = 0; i < users.size(); i++) {
+            if (username.equals(users.get(i).getUsername())){
+                if (users.get(i).getType().equals("Buyer")){
+                    return "Buyer";
+                }else{
+                    return "Seller";
+                }
+            }
+        }
+        return "None";
+    }
+
     public void update(String username, String newPassword) {
         try {
             FileWriter fileWriter = new FileWriter("data/users.csv", false);

@@ -15,12 +15,11 @@ public class SignUpScreen {
     private Label title;
     private TextField userField;
     private PasswordField pswField1,pswField2;
-    private CheckBox check1,check2,check3;
+    private CheckBox check1,check2;
     private Button registerBtn;
     private VBox box1,box2;
     private HBox box3;
 
-    private ALobby alobby;
     private BLobby blobby;
     private SLobby slobby;
     private Scene scene;
@@ -54,30 +53,19 @@ public class SignUpScreen {
         check1 = new CheckBox("Buyer");
         check1.setOnAction(event -> {
             check2.setSelected(false);
-            check3.setSelected(false);
         });
 
         check2 = new CheckBox("Seller");
         check2.setOnAction(event -> {
             check1.setSelected(false);
-            check3.setSelected(false);
         });
-
-        check3 = new CheckBox("Assembler");
-        check3.setOnAction(event -> {
-            check1.setSelected(false);
-            check2.setSelected(false);
-        });
-
 
         registerBtn = new Button("Sign Up");
         registerBtn.setOnAction(event -> {
             if (check1.isSelected()){
                 type = "Buyer";
-            } else if (check2.isSelected()) {
-                type = "Seller";
             }else{
-                type = "Assembler";
+                type = "Seller";
             }
 
             // After validating password goes straight to lobby.
@@ -91,11 +79,6 @@ public class SignUpScreen {
                 System.out.println("User Created");
                 slobby = new SLobby(userField.getText(), primaryStage);
                 primaryStage.setScene(slobby.getScene());
-            }else if (pswField1.getText().equals(pswField2.getText()) && type.equals("Assembler")){
-                userController.create(userField.getText(), pswField1.getText(),type);
-                System.out.println("User Created");
-                alobby = new ALobby(userField.getText(), primaryStage);
-                primaryStage.setScene(alobby.getScene());
             }else{
                 System.out.println("Passwords are not equal");
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -115,7 +98,7 @@ public class SignUpScreen {
         box2.getChildren().addAll(userField, pswField1, pswField2);
 
 
-        box3.getChildren().addAll(check1,check2,check3,registerBtn);
+        box3.getChildren().addAll(check1,check2,registerBtn);
         box1.getChildren().addAll(title, box2, box3);
 
 

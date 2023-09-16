@@ -20,7 +20,9 @@ public class LoginScreen {
     private Button signBtn,registerBtn;
     private VBox box1,box2;
     private HBox box3;
-    private Home home;
+    //private Home home;
+    private BLobby bLobby;
+    private SLobby sLobby;
     private SignUpScreen signUpScreen;
     private Scene scene;
     private UserController userController;
@@ -50,8 +52,15 @@ public class LoginScreen {
         signBtn.setOnAction(e -> {
             if(userController.read(userField.getText(),pswField.getText())){
                 System.out.println("Welcome!");
-                home = new Home(userField.getText(), primaryStage);
-                primaryStage.setScene(home.getScene());
+                if(userController.checkType(userField.getText()).equals("Buyer")){
+                    bLobby = new BLobby(userField.getText(),primaryStage);
+                    primaryStage.setScene(bLobby.getScene());
+                }else{
+                    sLobby = new SLobby(userField.getText(),primaryStage);
+                    primaryStage.setScene(sLobby.getScene());
+                }
+                //home = new Home(userField.getText(), primaryStage);
+                //primaryStage.setScene(home.getScene());
             }
         });
         registerBtn = new Button("Register");
