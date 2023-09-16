@@ -39,7 +39,7 @@ public class SPending {
         mainBox = new VBox();
         backBox = new HBox();
         backBox.getChildren().addAll(back);
-        mainBox.getChildren().addAll(title);
+        mainBox.getChildren().addAll(backBox,title);
         mainBox.setAlignment(Pos.CENTER);
         scene = new Scene(mainBox);
     }
