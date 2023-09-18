@@ -70,12 +70,12 @@ public class SignUpScreen {
 
             // After validating password goes straight to lobby.
             if (pswField1.getText().equals(pswField2.getText()) && type.equals("Buyer")) {
-                userController.create(userField.getText(), pswField1.getText(), type);
+                userController.create(userField.getText(), pswField1.getText(), "", "", type);
                 System.out.println("User Created");
                 blobby = new BLobby(userField.getText(), primaryStage);
                 primaryStage.setScene(blobby.getScene());
             }else if (pswField1.getText().equals(pswField2.getText()) && type.equals("Seller")) {
-                userController.create(userField.getText(), pswField1.getText(), type);
+                userController.create(userField.getText(), pswField1.getText(), "", "", type);
                 System.out.println("User Created");
                 slobby = new SLobby(userField.getText(), primaryStage);
                 primaryStage.setScene(slobby.getScene());
