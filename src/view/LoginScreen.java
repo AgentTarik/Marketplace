@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 public class LoginScreen {
     private Label title;
-        private TextField userField;
+    private TextField userField;
     private PasswordField pswField;
     private Button signBtn,registerBtn;
     private VBox box1,box2;
