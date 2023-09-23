@@ -1,6 +1,6 @@
 package view;
 
-import controller.ProductController;
+import controller.ComputerController;
 import controller.UserController;
 
 import javafx.collections.FXCollections;
@@ -22,13 +22,13 @@ public class Home {
     private Label userArea,productArea;
     private TableView table;
     private UserController userController;
-    private ProductController productController;
+    private ComputerController productController;
     private CreateProduct createProduct;
 
 
     public Home(String activeUser, Stage primaryStage){
         userController = new UserController();
-        productController = new ProductController();
+        productController = new ComputerController();
         initComponents(activeUser, primaryStage);
     }
     public void initComponents(String activeUser, Stage primaryStage){

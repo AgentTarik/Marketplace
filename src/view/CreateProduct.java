@@ -1,7 +1,7 @@
 package view;
 
 
-import controller.ProductController;
+import controller.ComputerController;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -13,7 +13,7 @@ public class CreateProduct {
     private TextField idField,nameField,quantityField,valueField;
     private VBox mainBox;
     private Scene scene;
-    private ProductController productController;
+    private ComputerController productController;
 
     public CreateProduct(String activeUser) {
         initComponents(activeUser);
@@ -33,7 +33,7 @@ public class CreateProduct {
 
         createBtn = new Button("Register Product");
         createBtn.setOnAction(event -> {
-            productController = new ProductController();
+            productController = new ComputerController();
             productController.create(
                     Integer.parseInt(idField.getText()),
                     nameField.getText(),

@@ -1,15 +1,14 @@
 package model;
 
-public class Product {
+public class Computer {
     private int ID,quantity;
     private String name;
+    private String description;
     private double value;
-
     private String user;
+    private Part[] parts;
 
-    
-
-    public Product(int ID, String name, int quantity, double value, String user) {
+    public Computer(int ID, String name, int quantity, double value, String user) {
         this.ID = ID;
         this.quantity = quantity;
         this.name = name;
@@ -55,5 +54,13 @@ public class Product {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public Part[] getParts() {
+        return parts;
+    }
+
+    public void setParts(Part[] parts) {
+        this.parts = parts;
     }
 }
