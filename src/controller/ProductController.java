@@ -24,7 +24,12 @@ public class ProductController {
             Scanner scanner = new Scanner(fileReader);
             while (scanner.hasNext()) {
                 String[] data = scanner.nextLine().split(",");
-                product = new Product(Integer.parseInt(data[0]), data[1], Integer.parseInt(data[2]), Double.parseDouble(data[3]),data[4]);
+                product = new Product(Integer.parseInt(
+                        data[0]),
+                        data[1],
+                        Integer.parseInt(data[2]),
+                        Double.parseDouble(data[3]),data[4]
+                );
                 products.add(product);
             }
             fileReader.close();

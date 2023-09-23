@@ -7,6 +7,8 @@ public class Product {
 
     private String user;
 
+    
+
     public Product(int ID, String name, int quantity, double value, String user) {
         this.ID = ID;
         this.quantity = quantity;
