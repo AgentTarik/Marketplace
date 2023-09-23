@@ -1,6 +1,7 @@
 package view;
 
-import controller.ProductController;
+import controller.ComputerController;
+import controller.PartsController;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -23,7 +24,7 @@ public class SOrders {
     private VBox mainBox;
     private HBox backBox;
     private TableView table;
-    private ProductController productController;
+    private PartsController partsController;
 
 
     public SOrders(String activeUser, Stage primaryStage){
@@ -42,28 +43,32 @@ public class SOrders {
             primaryStage.setScene(sLobby.getScene());
         });
 
-        productController = new ProductController();
+        partsController = new PartsController();
 
         table = new TableView();
-        table.setItems(FXCollections.observableList(productController.read(activeUser)));
+        table.setItems(FXCollections.observableList(partsController.read(activeUser)));
 
-        TableColumn productId = new TableColumn<>("ID");
-        productId.setPrefWidth(100);
-        productId.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        TableColumn name = new TableColumn<>("Name");
+        name.setPrefWidth(100);
+        name.setCellValueFactory(new PropertyValueFactory<>("Name"));
 
-        TableColumn productName = new TableColumn<>("Name");
-        productName.setPrefWidth(100);
-        productName.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        TableColumn quantity = new TableColumn<>("Quantity");
+        quantity.setPrefWidth(100);
+        quantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
 
-        TableColumn productQuantity = new TableColumn<>("Quantity");
-        productQuantity.setPrefWidth(100);
-        productQuantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
+        TableColumn price = new TableColumn<>("Price");
+        price.setPrefWidth(100);
+        price.setCellValueFactory(new PropertyValueFactory<>("Price"));
 
-        TableColumn productValue= new TableColumn<>("Value");
-        productValue.setPrefWidth(100);
-        productValue.setCellValueFactory(new PropertyValueFactory<>("Value"));
+        TableColumn category = new TableColumn<>("Category");
+        category.setPrefWidth(100);
+        category.setCellValueFactory(new PropertyValueFactory<>("Category"));
 
-        table.getColumns().setAll(productId,productName,productQuantity,productValue);
+        TableColumn brand = new TableColumn<>("Brand");
+        brand.setPrefWidth(100);
+        brand.setCellValueFactory(new PropertyValueFactory<>("Brand"));
+
+        table.getColumns().setAll(name,quantity,price,category,brand);
 
         mainBox = new VBox();
         backBox = new HBox();
