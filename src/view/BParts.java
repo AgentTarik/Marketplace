@@ -9,7 +9,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-public class BSearch {
+public class BParts {
     private Scene scene;
     private Button back;
     private BLobby bLobby;
@@ -18,7 +18,7 @@ public class BSearch {
     private HBox backBox;
 
 
-    public BSearch(String activeUser, Stage primaryStage){
+    public BParts(String activeUser, Stage primaryStage){
         initComponents(activeUser, primaryStage);
     }
 

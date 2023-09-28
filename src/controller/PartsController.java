@@ -52,10 +52,14 @@ public class PartsController {
         return userParts;
     }
 
+    public int newID(){
+        return parts.get(parts.size()-1).getID() +1;
+    }
+
     public void create(int ID, int IDPC, int quantity, double price, String name, String category, String brand, String userOnwer) {
         try {
             FileWriter fileWriter = new FileWriter("data/parts.csv", true);
-            fileWriter.write(ID + "," + quantity + "," + price + "," + name + "," + category + "," + brand + "," + userOnwer);
+            fileWriter.write(ID + "," + IDPC + "," + quantity + "," + price + "," + name + "," + category + "," + brand + "," + userOnwer);
             fileWriter.write(System.lineSeparator());
             part = new Part(ID, IDPC, quantity, price, name, category, brand, userOnwer);
             parts.add(part);
