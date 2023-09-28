@@ -1,5 +1,6 @@
 package view;
 
+import controller.PartsController;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,12 +14,13 @@ import javafx.stage.Stage;
 
 public class SCreate {
     private Scene scene;
+    private PartsController partsController;
     private Button back,submit;
     private SLobby sLobby;
-    private Label title,cateLabel,specLabel,quantLabel,priceLabel;
-    private TextField cateField,specField,quantField,priceField;
+    private Label title,cateLabel, nameLabel,brandLabel,quantLabel,priceLabel;
+    private TextField cateField, nameField,brandField,quantField,priceField;
     private VBox mainBox,createBox;
-    private HBox backBox,cateBox,specBox,quantBox,priceBox,submitBox;
+    private HBox backBox,cateBox, nameBox,brandBox, quantBox,priceBox,submitBox;
 
     public SCreate(String activeUser, Stage primaryStage){
         initComponents(activeUser, primaryStage);
@@ -36,17 +38,23 @@ public class SCreate {
         cateField = new TextField();
         cateField.setPromptText("Usuário");
 
-        specLabel = new Label();
-        specLabel.setText("specifications: ");
+        nameLabel = new Label();
+        nameLabel.setText("Name: ");
 
-        specField = new TextField();
-        specField.setPromptText("Usuário");
+        nameField = new TextField();
+        nameField.setPromptText("Name");
+
+        brandLabel = new Label();
+        brandLabel.setText("Brand:");
+
+        brandField = new TextField();
+        brandField.setPromptText("Brand");
 
         quantLabel = new Label();
         quantLabel.setText("Quantity: ");
 
         quantField = new TextField();
-        quantField.setPromptText("Usuário");
+        quantField.setPromptText("Quantity");
 
         priceLabel = new Label();
         priceLabel.setText("Price: ");
@@ -61,8 +69,17 @@ public class SCreate {
             primaryStage.setScene(sLobby.getScene());
         });
 
-        submit = new Button("Sign Up");
+        submit = new Button("Submit");
         submit.setOnAction(event -> {
+            partsController = new PartsController();
+            partsController.create(partsController.newID(),
+                    1,
+                    Integer.parseInt(quantField.getText()),
+                    Double.parseDouble(priceField.getText()),
+                    nameField.getText(),
+                    cateField.getText(),
+                    brandField.getText(),
+                    activeUser);
             });
 
         mainBox = new VBox();
@@ -71,9 +88,13 @@ public class SCreate {
         cateBox.getChildren().addAll(cateLabel,cateField);
         cateBox.setAlignment(Pos.CENTER);
 
-        specBox = new HBox();
-        specBox.getChildren().addAll(specLabel,specField);
-        specBox.setAlignment(Pos.CENTER);
+        nameBox = new HBox();
+        nameBox.getChildren().addAll(nameLabel, nameField);
+        nameBox.setAlignment(Pos.CENTER);
+
+        brandBox = new HBox();
+        brandBox.getChildren().addAll(brandLabel,brandField);
+        brandBox.setAlignment(Pos.CENTER);
 
         quantBox = new HBox();
         quantBox.getChildren().addAll(quantLabel,quantField);
@@ -84,9 +105,12 @@ public class SCreate {
         priceBox.setAlignment(Pos.CENTER);
 
         submitBox = new HBox();
+        submitBox.getChildren().addAll(submit);
+        submitBox.setAlignment(Pos.CENTER);
+
         createBox = new VBox();
 
-        createBox.getChildren().addAll(cateBox,specBox,quantBox,priceBox,submitBox);
+        createBox.getChildren().addAll(nameBox,cateBox,brandBox,quantBox,priceBox,submitBox);
         createBox.setAlignment(Pos.CENTER);
 
         backBox = new HBox();

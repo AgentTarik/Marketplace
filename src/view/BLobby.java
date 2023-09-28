@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 public class BLobby {
     private Scene scene;
-    private BSearch bSearch;
+    private BParts bParts;
     private BPending bPending;
     private BCart bCart;
     private Button search, pending, cart;
@@ -32,8 +32,8 @@ public class BLobby {
         search = new Button();
         search.setText("Search");
         search.setOnAction(event -> {
-            bSearch = new BSearch(activeUser,primaryStage);
-            primaryStage.setScene(bSearch.getScene());
+            bParts = new BParts(activeUser,primaryStage);
+            primaryStage.setScene(bParts.getScene());
         });
 
         pending = new Button();
