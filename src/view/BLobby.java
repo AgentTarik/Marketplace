@@ -12,9 +12,11 @@ import javafx.stage.Stage;
 public class BLobby {
     private Scene scene;
     private BParts bParts;
+    private BPCs bPCs;
+    private BBuild bBuild;
     private BPending bPending;
     private BCart bCart;
-    private Button search, pending, cart;
+    private Button parts,PCs,build, pending, cart;
     private Label title;
     private VBox mainBox;
 
@@ -29,11 +31,25 @@ public class BLobby {
         title.setText("Welcome Buyer");
         title.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
 
-        search = new Button();
-        search.setText("Search");
-        search.setOnAction(event -> {
+        parts = new Button();
+        parts.setText("PC Parts");
+        parts.setOnAction(event -> {
             bParts = new BParts(activeUser,primaryStage);
             primaryStage.setScene(bParts.getScene());
+        });
+
+        PCs = new Button();
+        PCs.setText("Computers");
+        PCs.setOnAction(event -> {
+            bPCs = new BPCs(activeUser,primaryStage);
+            primaryStage.setScene(bPCs.getScene());
+        });
+
+        build = new Button();
+        build.setText("Build PC");
+        build.setOnAction(event -> {
+            bBuild = new BBuild(activeUser,primaryStage);
+            primaryStage.setScene(bBuild.getScene());
         });
 
         pending = new Button();
@@ -51,7 +67,7 @@ public class BLobby {
         });
 
         mainBox = new VBox();
-        mainBox.getChildren().addAll(title, search,pending,cart);
+        mainBox.getChildren().addAll(title,parts,PCs,build,pending,cart);
         mainBox.setAlignment(Pos.CENTER);
         scene = new Scene(mainBox);
     }
