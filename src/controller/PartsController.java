@@ -161,4 +161,8 @@ public class PartsController {
             throw new RuntimeException(e);
         }
     }
+
+    public LinkedList<Part> getParts() {
+        return parts;
+    }
 }
