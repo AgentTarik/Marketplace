@@ -42,6 +42,47 @@ public class PartsController {
         }
     }
 
+    public String[] readByCategory(String category) {
+        LinkedList<Part> selectedParts = new LinkedList<>();
+
+        for (int i = 0; i < parts.size(); i++) {
+            if (category.equals(parts.get(i).getCategory())){
+                selectedParts.add(parts.get(i));
+            }
+        }
+
+        String[] selectedPartsArray = new String[selectedParts.size()];
+        for (int i = 0; i < selectedPartsArray.length; i++) {
+            selectedPartsArray[i] = selectedParts.get(i).getName();
+        }
+
+        return selectedPartsArray;
+    }
+
+    public String[] readByCategory(String category, String name) {
+        String brand = "";
+        for (int i = 0; i < parts.size(); i++) {
+            if (name.equals(parts.get(i).getName())){
+                brand = parts.get(i).getBrand();
+                System.out.println(brand);
+            }
+        }
+        
+        LinkedList<Part> selectedParts = new LinkedList<>();
+        for (int i = 0; i < parts.size(); i++) {
+            if (category.equals(parts.get(i).getCategory()) && category.equals("cpu") && parts.get(i).getBrand().equals(brand)){
+                selectedParts.add(parts.get(i));
+            }
+        }
+
+        String[] selectedPartsArray = new String[selectedParts.size()];
+        for (int i = 0; i < selectedPartsArray.length; i++) {
+            selectedPartsArray[i] = selectedParts.get(i).getName();
+        }
+
+        return selectedPartsArray;
+    }
+
     public LinkedList<Part> read(String userOwner) {
         LinkedList<Part> userParts = new LinkedList<>();
         for (int i = 0; i < parts.size(); i++) {
