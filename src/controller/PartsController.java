@@ -42,6 +42,10 @@ public class PartsController {
         }
     }
 
+    public LinkedList<Part> getParts() {
+        return parts;
+    }
+
     public String[] readByCategory(String category) {
         LinkedList<Part> selectedParts = new LinkedList<>();
 
