@@ -1,7 +1,6 @@
 package controller;
 
 import model.Computer;
-
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,7 +11,12 @@ public class ComputerController {
     private Computer product;
     private LinkedList<Computer> products;
 
+    private PartsController partsController;
+
+    private int nextID;
+
     public ComputerController() {
+        partsController = new PartsController();
         products = new LinkedList<>();
         read();
     }
@@ -37,6 +41,24 @@ public class ComputerController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public int getNextID() {
+        nextID = products.size();
+        return nextID;
+    }
+
+    public double calculatePrice(String[] name){
+        double total = 0;
+        for (int i = 0; i < name.length; i++) {
+            for (int j = 0; j < partsController.getParts().size(); j++) {
+                if (partsController.getParts().get(j).getName().equals(name[i])){
+                    total = total + partsController.getParts().get(j).getPrice();
+                }
+            }
+
+        }
+        return total;
     }
 
     public LinkedList<Computer> read(String username) {

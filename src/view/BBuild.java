@@ -1,11 +1,13 @@
 package view;
 
+import controller.ComputerController;
 import controller.PartsController;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -16,13 +18,13 @@ public class BBuild {
     private Scene scene;
     private Button back;
     private BLobby bLobby;
-    private Label title;
+    private Label title, nameLbl;
+    private TextField nameTxt;
     private VBox mainBox, buildBox;
-    private HBox backBox;
-
+    private HBox backBox, nameBox;
     private ComboBox<String> comboBoxMB, comboBoxCPU, comboBoxRAM, comboBoxHD, comboBoxGPU;
-
     private PartsController partsController;
+    private Button buildBtn;
 
 
     public BBuild(String activeUser, Stage primaryStage){
@@ -57,7 +59,6 @@ public class BBuild {
             comboBoxCPU.getItems().addAll(partsController.readByCategory("cpu",comboBoxMB.getValue()));
         });
 
-        //comboBoxCPU.getItems().addAll(partsController.readByCategory("cpu",comboBoxMB.getValue()));
         comboBoxCPU.setValue("Select CPU");
         comboBoxCPU.setDisable(true);
 
@@ -70,8 +71,24 @@ public class BBuild {
         comboBoxGPU.getItems().addAll(partsController.readByCategory("gpu"));
         comboBoxGPU.setValue("Select GPU");
 
+        nameLbl = new Label("Computer Name: ");
+        nameTxt = new TextField();
+
+        ComputerController computerController = new ComputerController();
+        buildBtn = new Button("Build Computer");
+        buildBtn.setOnAction(event -> {
+            String[] name = {comboBoxMB.getValue(), comboBoxCPU.getValue(), comboBoxRAM.getValue(), comboBoxHD.getValue(), comboBoxGPU.getValue()};
+            computerController.create(computerController.getNextID(), nameTxt.getText(), 1, computerController.calculatePrice(name), "buyer");
+            BBuild bBuild = new BBuild(activeUser, primaryStage);
+            primaryStage.setScene(bBuild.getScene());
+        });
+
+        nameBox = new HBox(5);
+        nameBox.getChildren().addAll(nameLbl, nameTxt);
+        nameBox.setAlignment(Pos.CENTER);
+
         buildBox = new VBox(20);
-        buildBox.getChildren().addAll(comboBoxMB, comboBoxCPU, comboBoxRAM, comboBoxHD, comboBoxGPU);
+        buildBox.getChildren().addAll(comboBoxMB, comboBoxCPU, comboBoxRAM, comboBoxHD, comboBoxGPU, nameBox, buildBtn);
         buildBox.setAlignment(Pos.CENTER);
 
         backBox = new HBox();
