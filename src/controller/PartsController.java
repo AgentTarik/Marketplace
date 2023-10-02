@@ -166,7 +166,4 @@ public class PartsController {
         }
     }
 
-    public LinkedList<Part> getParts() {
-        return parts;
-    }
 }

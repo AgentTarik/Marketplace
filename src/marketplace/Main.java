@@ -20,11 +20,9 @@ public class Main extends Application {
         primaryStage.setHeight(400);
         primaryStage.setWidth(800);
 
-//        LoginScreen loginScreen = new LoginScreen(primaryStage);
-//        primaryStage.setScene(loginScreen.getScene());
+        LoginScreen loginScreen = new LoginScreen(primaryStage);
+        primaryStage.setScene(loginScreen.getScene());
 
-        BBuild bBuild = new BBuild("buyer", primaryStage);
-        primaryStage.setScene(bBuild.getScene());
 
         primaryStage.show();
     }
