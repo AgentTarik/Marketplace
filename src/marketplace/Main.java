@@ -17,7 +17,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setHeight(400);
+        primaryStage.setHeight(800);
         primaryStage.setWidth(800);
 
         LoginScreen loginScreen = new LoginScreen(primaryStage);

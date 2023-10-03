@@ -2,15 +2,20 @@ package view;
 
 import controller.PartsController;
 import javafx.collections.FXCollections;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import model.Part;
+
+import java.io.IOException;
 
 public class BParts {
     private Scene scene;
@@ -66,6 +71,22 @@ public class BParts {
         brand.setCellValueFactory(new PropertyValueFactory<>("Brand"));
 
         table.getColumns().setAll(name,quantity,price,category,brand);
+
+        table.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getClickCount() == 2) {
+
+                        int rowIndex = table.getSelectionModel().getSelectedIndex();
+                        TableColumn<?, ?> column = table.getFocusModel().getFocusedCell().getTableColumn();
+                        int colIndex = table.getColumns().indexOf(column);
+
+                        System.out.println(rowIndex+" "+colIndex);
+
+                }
+            }
+        });
+
 
         mainBox = new VBox();
         backBox = new HBox();
