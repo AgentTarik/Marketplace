@@ -30,9 +30,10 @@ public class BPCs {
         title.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
 
         back = new Button();
-        back.setText("back");
+        back.setText("\u2190");
+        back.setStyle("-fx-background-color: transparent; -fx-border-color: transparent; -fx-text-fill: black; -fx-font-size: 30");
         back.setOnAction(event -> {
-            bLobby = new BLobby(activeUser, primaryStage);
+            bLobby = new BLobby(activeUser,primaryStage);
             primaryStage.setScene(bLobby.getScene());
         });
 

@@ -96,7 +96,7 @@ public class BBuild {
         backBox.setAlignment(Pos.BASELINE_LEFT);
 
         mainBox = new VBox(30);
-        mainBox.getChildren().addAll(title, buildBox, backBox);
+        mainBox.getChildren().addAll(backBox,title, buildBox);
         mainBox.setAlignment(Pos.CENTER);
 
         scene = new Scene(mainBox);

@@ -63,7 +63,8 @@ public class SCreate {
         priceField.setPromptText("Usuário");
 
         back = new Button();
-        back.setText("back");
+        back.setText("\u2190");
+        back.setStyle("-fx-background-color: transparent; -fx-border-color: transparent; -fx-text-fill: black; -fx-font-size: 30");
         back.setOnAction(event -> {
             sLobby = new SLobby(activeUser,primaryStage);
             primaryStage.setScene(sLobby.getScene());
