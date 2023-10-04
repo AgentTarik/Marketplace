@@ -19,8 +19,8 @@ public class BParts {
     private PartsController partsController;
     private PurchaseController purchaseController;
     private Button back, addToCartButton;
-    private BLobby bLobby;
     private Alert alert;
+    private BLobby bLobby;
     private Label title;
     private TableView table;
     private VBox mainBox;
@@ -75,7 +75,7 @@ public class BParts {
 
 
         addToCartButton = new Button();
-        addToCartButton.setText("Buy");
+        addToCartButton.setText("Add to Cart");
         addToCartButton.setOnAction(event -> {
             selectedPart = (Part) table.getSelectionModel().getSelectedItem();
 

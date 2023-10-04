@@ -1,6 +1,8 @@
 package controller;
 
 import model.Computer;
+import model.Part;
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,16 +10,17 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class ComputerController {
-    private Computer product;
+    private Computer computer;
     private LinkedList<Computer> products;
 
     private PartsController partsController;
 
     private int nextID;
+    private LinkedList<Computer> computers;
 
     public ComputerController() {
         partsController = new PartsController();
-        products = new LinkedList<>();
+        computers = new LinkedList<>();
         read();
     }
 
@@ -27,14 +30,14 @@ public class ComputerController {
             Scanner scanner = new Scanner(fileReader);
             while (scanner.hasNext()) {
                 String[] data = scanner.nextLine().split(",");
-                product = new Computer(
+                computer = new Computer(
                         Integer.parseInt(data[0]),
                         data[1],
                         Integer.parseInt(data[2]),
                         Double.parseDouble(data[3]),
                         data[4]
                 );
-                products.add(product);
+                computers.add(computer);
             }
             fileReader.close();
             scanner.close();
@@ -44,7 +47,7 @@ public class ComputerController {
     }
 
     public int getNextID() {
-        nextID = products.size()+1;
+        nextID = computers.size()+1;
         return nextID;
     }
 
@@ -63,9 +66,9 @@ public class ComputerController {
 
     public LinkedList<Computer> read(String username) {
         LinkedList<Computer> userProducts = new LinkedList<>();
-        for (int i = 0; i < products.size(); i++) {
-            if (username.equals(products.get(i).getUser())) {
-                userProducts.add(products.get(i));
+        for (int i = 0; i < computers.size(); i++) {
+            if (username.equals(computers.get(i).getUser())) {
+                userProducts.add(computers.get(i));
             }
         }
         return userProducts;
@@ -76,8 +79,8 @@ public class ComputerController {
             FileWriter fileWriter = new FileWriter("data/computers.csv", true);
             fileWriter.write(ID+","+name+","+quantity+","+value+","+user);
             fileWriter.write(System.lineSeparator());
-            product = new Computer(ID,name,quantity,value,user);
-            products.add(product);
+            computer = new Computer(ID,name,quantity,value,user);
+            computers.add(computer);
 
             // Set new IDPC to parts in this new created PC
             partsController.create(ID, partsNames);
@@ -91,19 +94,19 @@ public class ComputerController {
     public void update(int ID, String newName, int newQuantity, double newValue) {
         try {
             FileWriter fileWriter = new FileWriter("data/computers.csv", false);
-            for (int i = 0; i < products.size(); i++) {
-                if (products.get(i).getID() == ID) {
-                    products.get(i).setName(newName);
-                    products.get(i).setQuantity(newQuantity);
-                    products.get(i).setValue(newValue);
+            for (int i = 0; i < computers.size(); i++) {
+                if (computers.get(i).getID() == ID) {
+                    computers.get(i).setName(newName);
+                    computers.get(i).setQuantity(newQuantity);
+                    computers.get(i).setValue(newValue);
 
                 }
-                fileWriter.write(products.get(i).getID() + ","
-                        + products.get(i).getName() + ","
-                        +products.get(i).getQuantity()+","
-                        +products.get(i).getQuantity()+","
-                        +products.get(i).getValue()+","
-                        +products.get(i).getUser());
+                fileWriter.write(computers.get(i).getID() + ","
+                        + computers.get(i).getName() + ","
+                        +computers.get(i).getQuantity()+","
+                        +computers.get(i).getQuantity()+","
+                        +computers.get(i).getValue()+","
+                        +computers.get(i).getUser());
                 fileWriter.write(System.lineSeparator());
             }
             fileWriter.close();
@@ -112,6 +115,39 @@ public class ComputerController {
         }
 
     }
+
+    //Update a single Computer quantity
+    public void update(String computerName) {
+        try {
+            FileWriter fileWriter = new FileWriter("data/computers.csv", false);
+            for (int i = 0; i < computers.size(); i++) {
+                if (computers.get(i).getName().equals(computerName) && computers.get(i).getQuantity() > 0) {
+                    computers.get(i).setQuantity(computers.get(i).getQuantity() - 1);
+                }
+                fileWriter.write(computers.get(i).getID() + ","
+                        + computers.get(i).getName() + ","
+                        +computers.get(i).getQuantity()+","
+                        +computers.get(i).getQuantity()+","
+                        +computers.get(i).getValue()+","
+                        +computers.get(i).getUser());
+                fileWriter.write(System.lineSeparator());
+            }
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public LinkedList<Computer> sellingComputers(){
+        LinkedList<Computer> sellingComputers = new LinkedList<>();
+        for (int i = 0; i < computers.size(); i++) {
+            if (computers.get(i).getQuantity() > 0){
+                sellingComputers.add(computers.get(i));
+            }
+        }
+        return sellingComputers;
+    }
+
 
     public void delete(int ID) {
         try {
@@ -137,7 +173,7 @@ public class ComputerController {
 
     }
 
-    public LinkedList<Computer> getProducts() {
-        return products;
+    public LinkedList<Computer> getComputers() {
+        return computers;
     }
 }
