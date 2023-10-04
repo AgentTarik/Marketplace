@@ -15,13 +15,14 @@ public class PurchaseController {
     private LinkedList<Purchase> purchases;
 
     public PurchaseController() {
-        purchases = new LinkedList<>();;
+        purchases = new LinkedList<>();
+        ;
         read();
     }
 
     public void read() {
         try {
-            FileReader fileReader = new FileReader("data/parts.csv");
+            FileReader fileReader = new FileReader("data/purchases.csv");
             Scanner scanner = new Scanner(fileReader);
             while (scanner.hasNext()) {
                 String[] data = scanner.nextLine().split(",");
@@ -44,12 +45,24 @@ public class PurchaseController {
     public LinkedList<Purchase> read(String userOwner) {
         LinkedList<Purchase> userPurchases = new LinkedList<>();
         for (int i = 0; i < purchases.size(); i++) {
-            if (userOwner.equals(purchases.get(i).getUserOwner())) {
+            if (purchases.get(i).getUserOwner().equals(userOwner)) {
                 userPurchases.add(purchases.get(i));
             }
         }
         return userPurchases;
     }
+
+
+    public double cartValue(String userOwner) {
+        LinkedList<Purchase> userPurchases = new LinkedList<>();
+        double totalValue = 0;
+        userPurchases = read(userOwner);
+        for (int i = 0; i < userPurchases.size(); i++) {
+            totalValue = totalValue + userPurchases.get(i).getValue();
+        }
+        return totalValue;
+    }
+
 
     public void create(String userOwner, String computerName,String partName, double value) {
         try {
@@ -65,31 +78,27 @@ public class PurchaseController {
     }
 
 
-
-//    public void delete(int ID) {
-//        try {
-//            FileWriter fileWriter = new FileWriter("data/parts.csv", false);
-//            for (int i = 0; i < parts.size(); i++) {
-//                if (parts.get(i).getID() != ID) {
-//                    fileWriter.write(
-//                            parts.get(i).getID() + "," +
-//                                    parts.get(i).getIDPC() + "," +
-//                                    parts.get(i).getQuantity() + "," +
-//                                    parts.get(i).getPrice() + "," +
-//                                    parts.get(i).getName() + "," +
-//                                    parts.get(i).getCategory() + "," +
-//                                    parts.get(i).getBrand() + "," +
-//                                    parts.get(i).getUserOwner()
-//                    );
-//                    fileWriter.write(System.lineSeparator());
-//                } else {
-//                    parts.set(i, null);
-//                }
-//            }
-//            fileWriter.close();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+   //deletes all Purchases from an user's Cart
+    public void delete(String userOwner) {
+        try {
+            FileWriter fileWriter = new FileWriter("data/purchases.csv", false);
+            for (int i = 0; i < purchases.size(); i++) {
+                if (!(purchases.get(i).getUserOwner().equals(userOwner))) {
+                    fileWriter.write(
+                            purchases.get(i).getUserOwner() + "," +
+                                    purchases.get(i).getComputerName() + "," +
+                                    purchases.get(i).getPartName() + "," +
+                                    purchases.get(i).getValue()
+                    );
+                    fileWriter.write(System.lineSeparator());
+                } else {
+                    purchases.set(i, null);
+                }
+            }
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
