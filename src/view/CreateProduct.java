@@ -13,7 +13,7 @@ public class CreateProduct {
     private TextField idField,nameField,quantityField,valueField;
     private VBox mainBox;
     private Scene scene;
-    private ComputerController productController;
+    private ComputerController computerController;
 
     public CreateProduct(String activeUser) {
         initComponents(activeUser);
@@ -33,13 +33,15 @@ public class CreateProduct {
 
         createBtn = new Button("Register Product");
         createBtn.setOnAction(event -> {
-            productController = new ComputerController();
-            productController.create(
+            computerController = new ComputerController();
+            computerController.create(
                     Integer.parseInt(idField.getText()),
                     nameField.getText(),
                     Integer.parseInt(quantityField.getText()),
                     Double.parseDouble(valueField.getText()),
-                    activeUser);
+                    activeUser,
+                    null
+                    );
         });
 
         mainBox = new VBox();

@@ -77,8 +77,8 @@ public class BBuild {
         ComputerController computerController = new ComputerController();
         buildBtn = new Button("Build Computer");
         buildBtn.setOnAction(event -> {
-            String[] name = {comboBoxMB.getValue(), comboBoxCPU.getValue(), comboBoxRAM.getValue(), comboBoxHD.getValue(), comboBoxGPU.getValue()};
-            computerController.create(computerController.getNextID(), nameTxt.getText(), 1, computerController.calculatePrice(name), "buyer");
+            String[] partsNames = {comboBoxMB.getValue(), comboBoxCPU.getValue(), comboBoxRAM.getValue(), comboBoxHD.getValue(), comboBoxGPU.getValue()};
+            computerController.create(computerController.getNextID(), nameTxt.getText(), 1, computerController.calculatePrice(partsNames), "buyer", partsNames);
             BBuild bBuild = new BBuild(activeUser, primaryStage);
             primaryStage.setScene(bBuild.getScene());
         });
