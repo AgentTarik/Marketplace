@@ -181,6 +181,32 @@ public class PartsController {
         }
     }
 
+    //Upadte a single Part quantity after added to cart
+    public void update(String partName) {
+        try {
+            FileWriter fileWriter = new FileWriter("data/parts.csv", false);
+            for (int i = 0; i < parts.size(); i++) {
+                if (parts.get(i).getName().equals(partName) && parts.get(i).getIDPC() == 0) {
+                    parts.get(i).setQuantity(parts.get(i).getQuantity() - 1);
+                }
+                fileWriter.write(
+                        parts.get(i).getID() + "," +
+                                parts.get(i).getIDPC() + "," +
+                                parts.get(i).getQuantity() + "," +
+                                parts.get(i).getPrice() + "," +
+                                parts.get(i).getName() + "," +
+                                parts.get(i).getCategory() + "," +
+                                parts.get(i).getBrand() + "," +
+                                parts.get(i).getUserOwner()
+                );
+                fileWriter.write(System.lineSeparator());
+                }
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void delete(int ID) {
         try {
             FileWriter fileWriter = new FileWriter("data/parts.csv", false);
@@ -205,6 +231,16 @@ public class PartsController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public LinkedList<Part> sellingParts(){
+        LinkedList<Part> sellingParts = new LinkedList<>();
+        for (int i = 0; i < parts.size(); i++) {
+            if (parts.get(i).getQuantity() > 0 && parts.get(i).getIDPC()==0) {
+                sellingParts.add(parts.get(i));
+            }
+        }
+        return sellingParts;
     }
 
 }

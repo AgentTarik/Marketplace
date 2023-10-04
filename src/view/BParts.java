@@ -1,13 +1,12 @@
 package view;
 
 import controller.PartsController;
+import controller.PurchaseController;
 import javafx.collections.FXCollections;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -15,17 +14,18 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import model.Part;
 
-import java.io.IOException;
-
 public class BParts {
     private Scene scene;
     private PartsController partsController;
-    private Button back;
+    private PurchaseController purchaseController;
+    private Button back, addToCartButton;
     private BLobby bLobby;
+    private Alert alert;
     private Label title;
     private TableView table;
     private VBox mainBox;
     private HBox backBox;
+    private Part selectedPart;
 
 
     public BParts(String activeUser, Stage primaryStage){
@@ -49,7 +49,7 @@ public class BParts {
         partsController = new PartsController();
 
         table = new TableView();
-        table.setItems(FXCollections.observableList(partsController.getParts()));
+        table.setItems(FXCollections.observableList(partsController.sellingParts()));
 
         TableColumn name = new TableColumn<>("Name");
         name.setPrefWidth(100);
@@ -73,26 +73,46 @@ public class BParts {
 
         table.getColumns().setAll(name,quantity,price,category,brand);
 
-        table.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if (event.getClickCount() == 2) {
 
-                        int rowIndex = table.getSelectionModel().getSelectedIndex();
-                        TableColumn<?, ?> column = table.getFocusModel().getFocusedCell().getTableColumn();
-                        int colIndex = table.getColumns().indexOf(column);
+        addToCartButton = new Button();
+        addToCartButton.setText("Buy");
+        addToCartButton.setOnAction(event -> {
+            selectedPart = (Part) table.getSelectionModel().getSelectedItem();
 
-                        System.out.println(rowIndex+" "+colIndex);
-
-                }
+            if (selectedPart != null) {
+                purchaseController = new PurchaseController();
+                purchaseController.create(activeUser,"empty",selectedPart.getName(),selectedPart.getPrice());
+                partsController.update(selectedPart.getName());
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText(selectedPart.getName() + " added to cart");
+                alert.showAndWait();
+            } else {
+                System.out.println("No row selected.");
             }
         });
+
+//        table.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                if (event.getClickCount() == 2) {
+//
+//                        int rowIndex = table.getSelectionModel().getSelectedIndex();
+//                        TableColumn<?, ?> column = table.getFocusModel().getFocusedCell().getTableColumn();
+//                        int colIndex = table.getColumns().indexOf(column);
+//
+//                        System.out.println(rowIndex+" "+colIndex);
+//
+//                }
+//            }
+//        });
 
 
         mainBox = new VBox();
         backBox = new HBox();
         backBox.getChildren().addAll(back);
-        mainBox.getChildren().addAll(backBox,title,table);
+        mainBox.getChildren().addAll(backBox,title,table, addToCartButton);
         mainBox.setAlignment(Pos.CENTER);
         scene = new Scene(mainBox);
     }

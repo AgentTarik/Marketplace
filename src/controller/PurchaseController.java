@@ -14,8 +14,8 @@ public class PurchaseController {
     private Purchase purchase;
     private LinkedList<Purchase> purchases;
 
-    public PurchaseController(LinkedList<Purchase> purchases) {
-        this.purchases = purchases;
+    public PurchaseController() {
+        purchases = new LinkedList<>();;
         read();
     }
 
