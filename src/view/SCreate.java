@@ -3,6 +3,7 @@ package view;
 import controller.PartsController;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -17,6 +18,7 @@ public class SCreate {
     private PartsController partsController;
     private Button back,submit;
     private SLobby sLobby;
+    private Alert alert;
     private Label title,cateLabel, nameLabel,brandLabel,quantLabel,priceLabel;
     private TextField cateField, nameField,brandField,quantField,priceField;
     private VBox mainBox,createBox;
@@ -74,13 +76,18 @@ public class SCreate {
         submit.setOnAction(event -> {
             partsController = new PartsController();
             partsController.create(partsController.newID(),
-                    1,
+                    0,
                     Integer.parseInt(quantField.getText()),
                     Double.parseDouble(priceField.getText()),
                     nameField.getText(),
                     cateField.getText(),
                     brandField.getText(),
                     activeUser);
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText(null);
+            alert.setContentText("Part added successfully ");
+            alert.showAndWait();
             });
 
         mainBox = new VBox();

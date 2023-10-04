@@ -2,24 +2,27 @@ package view;
 
 import controller.ComputerController;
 import controller.PartsController;
+import controller.PurchaseController;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import model.Computer;
+import model.Part;
 
 public class BPCs {
     private Scene scene;
     private ComputerController computerController;
-    private Button back;
+    private PurchaseController purchaseController;
+    private Button back, addToCartButton;
+    private Alert alert;
+    private Computer selectedComputer;
     private BLobby bLobby;
     private Label title;
     private VBox mainBox;
@@ -49,7 +52,7 @@ public class BPCs {
         computerController = new ComputerController();
 
         table = new TableView();
-        table.setItems(FXCollections.observableList(computerController.getProducts()));
+        table.setItems(FXCollections.observableList(computerController.sellingComputers()));
 
         TableColumn name = new TableColumn<>("Name");
         name.setPrefWidth(100);
@@ -65,10 +68,29 @@ public class BPCs {
 
         table.getColumns().setAll(name,quantity,value);
 
+        addToCartButton = new Button();
+        addToCartButton.setText("Add to Cart");
+        addToCartButton.setOnAction(event -> {
+            selectedComputer = (Computer) table.getSelectionModel().getSelectedItem();
+
+            if (selectedComputer != null) {
+                purchaseController = new PurchaseController();
+                purchaseController.create(activeUser,selectedComputer.getName(),"empty",selectedComputer.getValue());
+                computerController.update(selectedComputer.getName());
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText(selectedComputer.getName() + " added to cart");
+                alert.showAndWait();
+            } else {
+                System.out.println("No row selected.");
+            }
+        });
+
         mainBox = new VBox();
         backBox = new HBox();
         backBox.getChildren().addAll(back);
-        mainBox.getChildren().addAll(backBox, title,table);
+        mainBox.getChildren().addAll(backBox,title,table,addToCartButton);
         mainBox.setAlignment(Pos.CENTER);
         scene = new Scene(mainBox);
     }
