@@ -59,8 +59,6 @@ public class LoginScreen {
                     sLobby = new SLobby(userField.getText(),primaryStage);
                     primaryStage.setScene(sLobby.getScene());
                 }
-                //home = new Home(userField.getText(), primaryStage);
-                //primaryStage.setScene(home.getScene());
             }
         });
         registerBtn = new Button("Register");

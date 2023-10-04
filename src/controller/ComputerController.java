@@ -136,4 +136,8 @@ public class ComputerController {
 
 
     }
+
+    public LinkedList<Computer> getProducts() {
+        return products;
+    }
 }
