@@ -1,14 +1,25 @@
-1,0,14,30.5,ram 16gb,ram,kingston,seller
-2,0,9,25.3,ssd 1tb,hd/ssd,sandisk,seller
-3,0,15,12.9,cpu i7,cpu,intel,seller
+1,0,12,30.5,ram 16gb,ram,kingston,seller
+2,0,7,25.3,ssd 1tb,hd/ssd,sandisk,seller
+3,0,14,12.9,cpu i7,cpu,intel,seller
 4,0,14,23.0,cpu amd,cpu,amd,seller
-5,0,13,109.99,gpu nvidia,gpu,nvidia,seller
-6,0,15,109.99,rog motherboard,mb,intel,seller
-7,0,14,130.0,asus motherboard,mb,amd,seller
+5,0,11,109.99,gpu nvidia,gpu,nvidia,seller
+6,0,14,109.99,rog motherboard,mb,intel,seller
+7,0,13,130.0,asus motherboard,mb,amd,seller
 7,7,1,130.0,asus motherboard,mb,amd,seller
 4,7,1,23.0,cpu amd,cpu,amd,seller
 1,7,1,30.5,ram 16gb,ram,kingston,seller
 2,7,1,25.3,ssd 1tb,hd/ssd,sandisk,seller
 5,7,1,109.99,gpu nvidia,gpu,nvidia,seller
 6,1,12,102.21,gpu nvidia rtx3080,gpu,nvidia,seller
-7,0,13,228.99,cpu intel i9,cpu,intel,seller
+7,0,11,228.99,cpu intel i9,cpu,intel,seller
+6,8,1,109.99,rog motherboard,mb,intel,seller
+3,8,1,12.9,cpu i7,cpu,intel,seller
+1,8,1,30.5,ram 16gb,ram,kingston,seller
+2,8,1,25.3,ssd 1tb,hd/ssd,sandisk,seller
+5,8,1,109.99,gpu nvidia,gpu,nvidia,seller
+6,0,21,122.23,cpu intel i5,cpu,intel,miguels
+7,9,1,130.0,asus motherboard,mb,amd,seller
+7,9,1,228.99,cpu intel i9,cpu,intel,seller
+1,9,1,30.5,ram 16gb,ram,kingston,seller
+2,9,1,25.3,ssd 1tb,hd/ssd,sandisk,seller
+5,9,1,109.99,gpu nvidia,gpu,nvidia,seller
