@@ -19,6 +19,7 @@ public class PartsController {
 
     public void read() {
         try {
+            parts.clear();
             FileReader fileReader = new FileReader("data/parts.csv");
             Scanner scanner = new Scanner(fileReader);
             while (scanner.hasNext()) {
@@ -50,7 +51,9 @@ public class PartsController {
         LinkedList<Part> selectedParts = new LinkedList<>();
 
         for (int i = 0; i < parts.size(); i++) {
-            if (category.equals(parts.get(i).getCategory())){
+            if (    category.equals(parts.get(i).getCategory()) &&
+                    parts.get(i).getIDPC() == 0 &&
+                    parts.get(i).getQuantity() > 0){
                 selectedParts.add(parts.get(i));
             }
         }
@@ -74,7 +77,11 @@ public class PartsController {
         
         LinkedList<Part> selectedParts = new LinkedList<>();
         for (int i = 0; i < parts.size(); i++) {
-            if (category.equals(parts.get(i).getCategory()) && category.equals("cpu") && parts.get(i).getBrand().equals(brand)){
+            if (    category.equals(parts.get(i).getCategory()) &&
+                    category.equals("cpu") &&
+                    parts.get(i).getBrand().equals(brand) &&
+                    parts.get(i).getIDPC() == 0 &&
+                    parts.get(i).getQuantity() > 0){
                 selectedParts.add(parts.get(i));
             }
         }
@@ -114,12 +121,47 @@ public class PartsController {
         }
     }
 
-    public void update(int ID, String newName) {
+    public void create(int IDPC, String[] partsNames) {
+        try {
+            FileWriter fileWriter = new FileWriter("data/parts.csv", true);
+            for (int i = 0; i < partsNames.length; i++) {
+                for (int j = 0; j < parts.size(); j++) {
+                    if (partsNames[i].equals(parts.get(j).getName())) {
+                        parts.get(j).setIDPC(IDPC);
+                        parts.get(j).setQuantity(1);
+                        fileWriter.write(
+                        parts.get(j).getID() + "," +
+                            parts.get(j).getIDPC() + "," +
+                            parts.get(j).getQuantity() + "," +
+                            parts.get(j).getPrice() + "," +
+                            parts.get(j).getName() + "," +
+                            parts.get(j).getCategory() + "," +
+                            parts.get(j).getBrand() + "," +
+                            parts.get(j).getUserOwner()
+                        );
+                        fileWriter.write(System.lineSeparator());
+                        break;
+                    }
+                }
+            }
+            fileWriter.close();
+            read();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        update(partsNames);
+    }
+
+    // Update quantity of parts after purchase
+    public void update(String[] partsNames) {
         try {
             FileWriter fileWriter = new FileWriter("data/parts.csv", false);
             for (int i = 0; i < parts.size(); i++) {
-                if (parts.get(i).getID() == ID) {
-                    parts.get(i).setName(newName);
+                for (int j = 0; j < partsNames.length; j++) {
+                    if (parts.get(i).getName().equals(partsNames[j]) && parts.get(i).getIDPC() == 0) {
+                        parts.get(i).setQuantity(parts.get(i).getQuantity() - 1);
+                        break;
+                    }
                 }
                 fileWriter.write(
                 parts.get(i).getID() + "," +
@@ -137,7 +179,6 @@ public class PartsController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     public void delete(int ID) {

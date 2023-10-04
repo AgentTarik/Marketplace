@@ -44,7 +44,7 @@ public class ComputerController {
     }
 
     public int getNextID() {
-        nextID = products.size();
+        nextID = products.size()+1;
         return nextID;
     }
 
@@ -71,13 +71,17 @@ public class ComputerController {
         return userProducts;
     }
 
-    public void create(int ID, String name, int quantity, double value, String user) {
+    public void create(int ID, String name, int quantity, double value, String user, String[] partsNames) {
         try {
             FileWriter fileWriter = new FileWriter("data/computers.csv", true);
             fileWriter.write(ID+","+name+","+quantity+","+value+","+user);
             fileWriter.write(System.lineSeparator());
             product = new Computer(ID,name,quantity,value,user);
             products.add(product);
+
+            // Set new IDPC to parts in this new created PC
+            partsController.create(ID, partsNames);
+
             fileWriter.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
