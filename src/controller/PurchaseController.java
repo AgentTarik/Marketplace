@@ -16,7 +16,6 @@ public class PurchaseController {
 
     public PurchaseController() {
         purchases = new LinkedList<>();
-        ;
         read();
     }
 
@@ -41,6 +40,9 @@ public class PurchaseController {
         }
     }
 
+    public LinkedList<Purchase> getPurchases() {
+        return purchases;
+    }
 
     public LinkedList<Purchase> read(String userOwner) {
         LinkedList<Purchase> userPurchases = new LinkedList<>();

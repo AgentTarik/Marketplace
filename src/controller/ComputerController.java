@@ -1,6 +1,7 @@
 package controller;
 
 import model.Computer;
+import model.Part;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -11,9 +12,7 @@ import java.util.Scanner;
 public class ComputerController {
     private Computer computer;
     private LinkedList<Computer> products;
-
     private PartsController partsController;
-
     private int nextID;
     private LinkedList<Computer> computers;
 
@@ -48,6 +47,34 @@ public class ComputerController {
     public int getNextID() {
         nextID = computers.size()+1;
         return nextID;
+    }
+
+    public Part[] findComputerParts(int IDPC){
+        Part[] parts = new Part[5];
+        int j = 0;
+        PartsController partsController = new PartsController();
+        for (int i = 0; i < partsController.getParts().size(); i++) {
+            if (partsController.getParts().get(i).getIDPC() == IDPC){
+                parts[j] = partsController.getParts().get(i);
+                j++;
+            }
+        }
+        return parts;
+    }
+
+    public void loadComputerParts(){
+        PartsController partsController = new PartsController();
+        for (int i = 0; i < computers.size(); i++) {
+            Part[] parts = new Part[5];
+            int k = 0;
+            for (int j = 0; j < partsController.getParts().size(); j++) {
+                if (computers.get(i).getID() == partsController.getParts().get(j).getIDPC()){
+                    parts[k] = partsController.getParts().get(j);
+                    k++;
+                }
+            }
+            computers.get(i).setParts(parts);
+        }
     }
 
     public double calculatePrice(String[] name){
