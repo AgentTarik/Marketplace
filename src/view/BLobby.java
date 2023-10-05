@@ -17,7 +17,7 @@ public class BLobby {
     private BParts bParts;
     private BPCs bPCs;
     private BBuild bBuild;
-    private BPending bPending;
+    //private BPending bPending;
     private BCart bCart;
     private Button parts,PCs,build, pending, cart;
     private Label title;
@@ -60,14 +60,14 @@ public class BLobby {
             primaryStage.setScene(bBuild.getScene());
         });
 
-        pending = new Button();
-        pending.setPrefSize(20,20);
-        pending.setStyle("-fx-background-color: transparent;");
-        pending.setGraphic(new ImageView(new Image(getClass().getResource("/img/pending.png").toExternalForm(), 100, 100, false, false)));
-        pending.setOnAction(event -> {
-            bPending = new BPending(activeUser,primaryStage);
-            primaryStage.setScene(bPending.getScene());
-        });
+//        pending = new Button();
+//        pending.setPrefSize(20,20);
+//        pending.setStyle("-fx-background-color: transparent;");
+//        pending.setGraphic(new ImageView(new Image(getClass().getResource("/img/pending.png").toExternalForm(), 100, 100, false, false)));
+//        pending.setOnAction(event -> {
+//            bPending = new BPending(activeUser,primaryStage);
+//            primaryStage.setScene(bPending.getScene());
+//        });
 
         cart = new Button();
         cart.setPrefSize(20,20);
@@ -79,7 +79,7 @@ public class BLobby {
         });
 
         HBox buttonsBox = new HBox(30);
-        buttonsBox.getChildren().addAll(parts,PCs,build,pending,cart);
+        buttonsBox.getChildren().addAll(parts,PCs,build,cart);
         buttonsBox.setAlignment(Pos.CENTER);
 
         mainBox = new VBox(50);

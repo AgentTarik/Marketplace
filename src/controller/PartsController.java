@@ -97,7 +97,7 @@ public class PartsController {
     public LinkedList<Part> read(String userOwner) {
         LinkedList<Part> userParts = new LinkedList<>();
         for (int i = 0; i < parts.size(); i++) {
-            if (userOwner.equals(parts.get(i).getUserOwner())) {
+            if (userOwner.equals(parts.get(i).getUserOwner())&&parts.get(i).getIDPC()==0) {
                 userParts.add(parts.get(i));
             }
         }
