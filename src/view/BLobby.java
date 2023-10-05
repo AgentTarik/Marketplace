@@ -58,7 +58,7 @@ public class BLobby {
             bBuild = new BBuild(activeUser,primaryStage);
             primaryStage.setScene(bBuild.getScene());
         });
-
+        
         cart = new Button();
         cart.setPrefSize(20,20);
         cart.setStyle("-fx-background-color: transparent;");

@@ -18,8 +18,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setHeight(primaryStage.getMaxHeight());
-        primaryStage.setWidth(primaryStage.getMaxWidth());
+        primaryStage.setHeight(1080);
+        primaryStage.setWidth(1920);
 
         LoginScreen loginScreen = new LoginScreen(primaryStage);
         primaryStage.setScene(loginScreen.getScene());
