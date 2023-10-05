@@ -72,7 +72,7 @@ public class SOrders {
         table.getColumns().setAll(name,quantity,price,category,brand);
         table.setMaxWidth(500);
 
-        mainBox = new VBox();
+        mainBox = new VBox(30);
         backBox = new HBox();
         backBox.getChildren().addAll(back);
         mainBox.getChildren().addAll(backBox,title,table);

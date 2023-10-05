@@ -90,25 +90,25 @@ public class SCreate {
             alert.showAndWait();
             });
 
-        mainBox = new VBox();
+        mainBox = new VBox(30);
 
-        cateBox = new HBox();
+        cateBox = new HBox(10);
         cateBox.getChildren().addAll(cateLabel,cateField);
         cateBox.setAlignment(Pos.CENTER);
 
-        nameBox = new HBox();
+        nameBox = new HBox(10);
         nameBox.getChildren().addAll(nameLabel, nameField);
         nameBox.setAlignment(Pos.CENTER);
 
-        brandBox = new HBox();
+        brandBox = new HBox(10);
         brandBox.getChildren().addAll(brandLabel,brandField);
         brandBox.setAlignment(Pos.CENTER);
 
-        quantBox = new HBox();
+        quantBox = new HBox(10);
         quantBox.getChildren().addAll(quantLabel,quantField);
         quantBox.setAlignment(Pos.CENTER);
 
-        priceBox = new HBox();
+        priceBox = new HBox(10);
         priceBox.getChildren().addAll(priceLabel,priceField);
         priceBox.setAlignment(Pos.CENTER);
 
@@ -116,8 +116,7 @@ public class SCreate {
         submitBox.getChildren().addAll(submit);
         submitBox.setAlignment(Pos.CENTER);
 
-        createBox = new VBox();
-
+        createBox = new VBox(20);
         createBox.getChildren().addAll(nameBox,cateBox,brandBox,quantBox,priceBox,submitBox);
         createBox.setAlignment(Pos.CENTER);
 

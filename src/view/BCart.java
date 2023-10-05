@@ -88,8 +88,8 @@ public class BCart {
         });
 
 
-        mainBox = new VBox();
-        buyBox = new HBox();
+        mainBox = new VBox(30);
+        buyBox = new HBox(10);
         buyBox.getChildren().addAll(cartValue,buyButton);
         buyBox.setAlignment(Pos.CENTER);
         backBox = new HBox();

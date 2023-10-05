@@ -44,7 +44,7 @@ public class CreateProduct {
                 );
         });
 
-        mainBox = new VBox();
+        mainBox = new VBox(30);
         mainBox.getChildren().addAll(idField,nameField,quantityField,valueField,createBtn);
 
         scene = new Scene(mainBox);

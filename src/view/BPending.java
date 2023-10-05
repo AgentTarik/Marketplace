@@ -37,7 +37,7 @@ public class BPending {
             primaryStage.setScene(bLobby.getScene());
         });
 
-        mainBox = new VBox();
+        mainBox = new VBox(30);
         backBox = new HBox();
         backBox.getChildren().addAll(back);
         mainBox.getChildren().addAll(backBox,title);
