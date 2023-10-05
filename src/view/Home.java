@@ -94,7 +94,7 @@ public class Home {
         productBox = new VBox();
         productBox.getChildren().addAll(productArea,table,buttonsBox);
 
-        mainBox = new HBox();
+        mainBox = new HBox(30);
         mainBox.getChildren().addAll(userBox,productBox);
         scene = new Scene(mainBox);
     }
