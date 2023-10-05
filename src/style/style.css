@@ -1,3 +1,12 @@
 #mainBox{
     -fx-background-color: #ffffff;
 }
+
+#field{
+    -fx-background-color: #dddddd;
+    -fx-text-fill: #333333;
+}
+
+#label{
+    -fx-text-fill: #333333;
+}

@@ -69,6 +69,7 @@ public class Home {
         productValue.setCellValueFactory(new PropertyValueFactory<>("Value"));
 
         table.getColumns().setAll(productId,productName,productQuantity,productValue);
+        table.setMaxWidth(400);
 
         creteProductBtn = new Button("Add Product");
         creteProductBtn.setOnAction(event -> {

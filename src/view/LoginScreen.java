@@ -36,7 +36,7 @@ public class LoginScreen {
         title = new Label();
         title.setText("Log In");
         title.setFont(Font.font("Verdana", FontWeight.BOLD, 70));
-
+        title.setId("label");
 
         userField = new TextField();
         userField.setPromptText("Usuário");
@@ -67,17 +67,16 @@ public class LoginScreen {
             primaryStage.setScene(signUpScreen.getScene());
         });
 
-
         box1 = new VBox(10);
         box2 = new VBox(10);
         box3 = new HBox(30);
 
         box2.getChildren().addAll(userField, pswField);
-
+        userField.setId("field");
+        pswField.setId("field");
 
         box3.getChildren().addAll(signBtn,registerBtn);
         box1.getChildren().addAll(title, box2, box3);
-
 
         box3.setAlignment(Pos.BASELINE_CENTER);
         box2.setAlignment(Pos.CENTER);

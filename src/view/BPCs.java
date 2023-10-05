@@ -27,7 +27,6 @@ public class BPCs {
     private Label title;
     private VBox mainBox;
     private HBox backBox;
-
     private TableView table;
 
 
@@ -55,18 +54,19 @@ public class BPCs {
         table.setItems(FXCollections.observableList(computerController.sellingComputers()));
 
         TableColumn name = new TableColumn<>("Name");
-        name.setPrefWidth(100);
+        name.setPrefWidth(200);
         name.setCellValueFactory(new PropertyValueFactory<>("Name"));
 
         TableColumn quantity = new TableColumn<>("Quantity");
-        quantity.setPrefWidth(100);
+        quantity.setPrefWidth(200);
         quantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
 
         TableColumn value = new TableColumn<>("Value");
-        value.setPrefWidth(100);
+        value.setPrefWidth(200);
         value.setCellValueFactory(new PropertyValueFactory<>("Value"));
 
         table.getColumns().setAll(name,quantity,value);
+        table.setMaxWidth(600);
 
         addToCartButton = new Button();
         addToCartButton.setText("Add to Cart");

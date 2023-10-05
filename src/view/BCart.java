@@ -50,18 +50,19 @@ public class BCart {
         table.setItems(FXCollections.observableList(purchaseController.read(activeUser)));
 
         TableColumn name = new TableColumn<>("ComputerName");
-        name.setPrefWidth(100);
+        name.setPrefWidth(200);
         name.setCellValueFactory(new PropertyValueFactory<>("ComputerName"));
 
         TableColumn quantity = new TableColumn<>("PartName");
-        quantity.setPrefWidth(100);
+        quantity.setPrefWidth(200);
         quantity.setCellValueFactory(new PropertyValueFactory<>("PartName"));
 
         TableColumn price = new TableColumn<>("Value");
-        price.setPrefWidth(100);
+        price.setPrefWidth(200);
         price.setCellValueFactory(new PropertyValueFactory<>("Value"));
 
         table.getColumns().setAll(name,quantity,price);
+        table.setMaxWidth(600);
 
         cartValue = new Label();
         cartValue.setText("The total value of your cart is: $"+ purchaseController.cartValue(activeUser));
