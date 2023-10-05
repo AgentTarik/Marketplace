@@ -1,7 +1,6 @@
 package controller;
 
 import model.Computer;
-import model.Part;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -59,7 +58,6 @@ public class ComputerController {
                     total = total + partsController.getParts().get(j).getPrice();
                 }
             }
-
         }
         return total;
     }

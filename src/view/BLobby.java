@@ -4,6 +4,9 @@ package view;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -26,48 +29,61 @@ public class BLobby {
     }
 
     public void initComponents(String activeUser, Stage primaryStage) {
-
         title = new Label();
         title.setText("Welcome Buyer");
-        title.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
+        title.setFont(Font.font("Verdana", FontWeight.BOLD, 100));
 
         parts = new Button();
-        parts.setText("PC Parts");
+        parts.setStyle("-fx-background-color: transparent;");
+        parts.setPrefSize(20,20);
+        parts.setGraphic(new ImageView(new Image(getClass().getResource("/img/part.png").toExternalForm(), 100, 100, false, false)));
         parts.setOnAction(event -> {
             bParts = new BParts(activeUser,primaryStage);
             primaryStage.setScene(bParts.getScene());
         });
 
         PCs = new Button();
-        PCs.setText("Computers");
+        PCs.setPrefSize(20,20);
+        PCs.setStyle("-fx-background-color: transparent;");
+        PCs.setGraphic(new ImageView(new Image(getClass().getResource("/img/computer.png").toExternalForm(), 100, 100, false, false)));
         PCs.setOnAction(event -> {
             bPCs = new BPCs(activeUser,primaryStage);
             primaryStage.setScene(bPCs.getScene());
         });
 
         build = new Button();
-        build.setText("Build PC");
+        build.setStyle("-fx-background-color: transparent;");
+        build.setPrefSize(20,20);
+        build.setGraphic(new ImageView(new Image(getClass().getResource("/img/build.png").toExternalForm(), 100, 100, false, false)));
         build.setOnAction(event -> {
             bBuild = new BBuild(activeUser,primaryStage);
             primaryStage.setScene(bBuild.getScene());
         });
 
         pending = new Button();
-        pending.setText("Pending");
+        pending.setPrefSize(20,20);
+        pending.setStyle("-fx-background-color: transparent;");
+        pending.setGraphic(new ImageView(new Image(getClass().getResource("/img/pending.png").toExternalForm(), 100, 100, false, false)));
         pending.setOnAction(event -> {
             bPending = new BPending(activeUser,primaryStage);
             primaryStage.setScene(bPending.getScene());
         });
 
         cart = new Button();
-        cart.setText("Cart");
+        cart.setPrefSize(20,20);
+        cart.setStyle("-fx-background-color: transparent;");
+        cart.setGraphic(new ImageView(new Image(getClass().getResource("/img/cart.png").toExternalForm(), 100, 100, false, false)));
         cart.setOnAction(event -> {
             bCart = new BCart(activeUser,primaryStage);
             primaryStage.setScene(bCart.getScene());
         });
 
-        mainBox = new VBox();
-        mainBox.getChildren().addAll(title,parts,PCs,build,pending,cart);
+        HBox buttonsBox = new HBox(30);
+        buttonsBox.getChildren().addAll(parts,PCs,build,pending,cart);
+        buttonsBox.setAlignment(Pos.CENTER);
+
+        mainBox = new VBox(50);
+        mainBox.getChildren().addAll(title, buttonsBox);
         mainBox.setAlignment(Pos.CENTER);
         scene = new Scene(mainBox);
     }

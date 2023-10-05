@@ -35,13 +35,13 @@ public class CreateProduct {
         createBtn.setOnAction(event -> {
             computerController = new ComputerController();
             computerController.create(
-                    Integer.parseInt(idField.getText()),
-                    nameField.getText(),
-                    Integer.parseInt(quantityField.getText()),
-                    Double.parseDouble(valueField.getText()),
-                    activeUser,
-                    null
-                    );
+                Integer.parseInt(idField.getText()),
+                nameField.getText(),
+                Integer.parseInt(quantityField.getText()),
+                Double.parseDouble(valueField.getText()),
+                activeUser,
+                null
+                );
         });
 
         mainBox = new VBox();

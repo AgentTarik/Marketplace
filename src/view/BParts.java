@@ -72,6 +72,7 @@ public class BParts {
         brand.setCellValueFactory(new PropertyValueFactory<>("Brand"));
 
         table.getColumns().setAll(name,quantity,price,category,brand);
+        table.setMaxWidth(500);
 
 
         addToCartButton = new Button();

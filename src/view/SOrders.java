@@ -70,6 +70,7 @@ public class SOrders {
         brand.setCellValueFactory(new PropertyValueFactory<>("Brand"));
 
         table.getColumns().setAll(name,quantity,price,category,brand);
+        table.setMaxWidth(500);
 
         mainBox = new VBox();
         backBox = new HBox();
