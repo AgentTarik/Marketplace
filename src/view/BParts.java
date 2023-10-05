@@ -74,12 +74,10 @@ public class BParts {
         table.getColumns().setAll(name,quantity,price,category,brand);
         table.setMaxWidth(500);
 
-
         addToCartButton = new Button();
         addToCartButton.setText("Add to Cart");
         addToCartButton.setOnAction(event -> {
             selectedPart = (Part) table.getSelectionModel().getSelectedItem();
-
             if (selectedPart != null) {
                 purchaseController = new PurchaseController();
                 purchaseController.create(activeUser,"empty",selectedPart.getName(),selectedPart.getPrice());

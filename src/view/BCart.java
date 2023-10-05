@@ -1,6 +1,7 @@
 package view;
 
 import controller.PartsController;
+import controller.PendingController;
 import controller.PurchaseController;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
@@ -49,19 +50,19 @@ public class BCart {
         table = new TableView();
         table.setItems(FXCollections.observableList(purchaseController.read(activeUser)));
 
-        TableColumn name = new TableColumn<>("ComputerName");
-        name.setPrefWidth(200);
-        name.setCellValueFactory(new PropertyValueFactory<>("ComputerName"));
+        TableColumn computerName = new TableColumn<>("ComputerName");
+        computerName.setPrefWidth(200);
+        computerName.setCellValueFactory(new PropertyValueFactory<>("ComputerName"));
 
-        TableColumn quantity = new TableColumn<>("PartName");
-        quantity.setPrefWidth(200);
-        quantity.setCellValueFactory(new PropertyValueFactory<>("PartName"));
+        TableColumn partName = new TableColumn<>("PartName");
+        partName.setPrefWidth(200);
+        partName.setCellValueFactory(new PropertyValueFactory<>("PartName"));
 
         TableColumn price = new TableColumn<>("Value");
         price.setPrefWidth(200);
         price.setCellValueFactory(new PropertyValueFactory<>("Value"));
 
-        table.getColumns().setAll(name,quantity,price);
+        table.getColumns().setAll(computerName,partName,price);
         table.setMaxWidth(600);
 
         cartValue = new Label();
@@ -72,6 +73,9 @@ public class BCart {
         buyButton.setText("Buy Now");
         buyButton.setOnAction(event -> {
             if (purchaseController.read(activeUser)!=null){
+                PendingController pendingController = new PendingController();
+                pendingController.create(activeUser, purchaseController.getPurchases().get(table.getSelectionModel().getFocusedIndex()).getComputerName(), purchaseController.getPurchases().get(table.getSelectionModel().getFocusedIndex()).getPartName(), purchaseController.getPurchases().get(table.getSelectionModel().getFocusedIndex()).getValue());
+
                 purchaseController.delete(activeUser);
                 successAlert = new Alert(Alert.AlertType.INFORMATION);
                 successAlert.setTitle("Success");
