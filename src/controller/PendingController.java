@@ -110,7 +110,6 @@ public class PendingController {
     public void delete(){
         try {
             FileWriter fileWriter = new FileWriter("data/pendings.csv", false);
-            fileWriter.write(System.lineSeparator());
             pendings.clear();
             fileWriter.close();
         } catch (IOException e) {
