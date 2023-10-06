@@ -65,7 +65,6 @@ public class SPending {
 //        TableColumn value = new TableColumn<>("Value");
 //        value.setPrefWidth(200);
 //        value.setCellValueFactory(new PropertyValueFactory<>("Value"));
-
 //        table.getColumns().setAll(userOwner,buyer,partName,value);
         table.getColumns().setAll(userOwner,buyer,partName);
 
@@ -76,8 +75,9 @@ public class SPending {
         submit.setOnAction(event -> {
             pendingController.delete();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success! Order sent to customer.");
+            alert.setTitle("Success!");
             alert.setHeaderText(null);
+            alert.setContentText("Order sent to customer.");
             alert.showAndWait();
 
             SLobby sLobby = new SLobby(activeUser, primaryStage);
