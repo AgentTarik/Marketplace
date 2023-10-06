@@ -62,12 +62,14 @@ public class SPending {
         partName.setPrefWidth(200);
         partName.setCellValueFactory(new PropertyValueFactory<>("PartName"));
 
-        TableColumn value = new TableColumn<>("Value");
-        value.setPrefWidth(200);
-        value.setCellValueFactory(new PropertyValueFactory<>("Value"));
+//        TableColumn value = new TableColumn<>("Value");
+//        value.setPrefWidth(200);
+//        value.setCellValueFactory(new PropertyValueFactory<>("Value"));
 
-        table.getColumns().setAll(userOwner,buyer,partName,value);
-        table.setMaxWidth(800);
+//        table.getColumns().setAll(userOwner,buyer,partName,value);
+        table.getColumns().setAll(userOwner,buyer,partName);
+
+        table.setMaxWidth(600);
 
         Button submit = new Button();
         submit.setText("Submit");
