@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
 
         UserController userController = new UserController();
         userController.read();
